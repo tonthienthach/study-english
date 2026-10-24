@@ -1,4 +1,5 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post, UseFilters } from '@nestjs/common';
+import { AssessmentExceptionFilter } from './assessment-exception.filter.js';
 import {
   ASSESS_PRONUNCIATION_USE_CASE,
   type AssessPronunciationPort,
@@ -6,6 +7,7 @@ import {
 import { AssessPronunciationDto } from './dto/assess-pronunciation.dto.js';
 
 @Controller('assessments')
+@UseFilters(AssessmentExceptionFilter)
 export class AssessmentController {
   constructor(
     @Inject(ASSESS_PRONUNCIATION_USE_CASE)
